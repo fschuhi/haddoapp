@@ -1,0 +1,76 @@
+# ============================================================================
+#  PRIVATE LIBRARY DATA - never commit (this repo is public)
+# ============================================================================
+# The copy of the haddolib database lives here
+/data/
+
+# Safety net: any SQLite file, wherever it ends up
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# The extract the app loads (titles, authors, locations of our books)
+/public/books.json
+
+# Cover images, should they ever be linked or copied into the app for development
+/public/covers
+
+# ============================================================================
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+
+# Production
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python virtual environment (for utility scripts)
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Configuration files with secrets
+scripts/secrets.toml
+
+# Temporary files
+tmp/
+*.tmp
+filesdump.txt
+project_tree.txt
+
+# LLM collaboration files, managed by stencil
+CRITICAL_RULES.md
+LLM_INSTRUCTIONS.md
+FIRST_PROMPT.md

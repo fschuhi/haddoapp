@@ -1,0 +1,30 @@
+{
+  "name": "haddoapp",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Read-only browser for our home library, for the iPhone",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "format": "prettier --write .",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.2",
+    "prettier": "^3.10.1",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}

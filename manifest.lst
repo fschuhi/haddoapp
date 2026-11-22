@@ -1,0 +1,59 @@
+# (This file is the basis of the `filesdump.txt` in which it is included, i.e. the document you are reading right now.
+# The files in this manifest are the relevant files for understanding how the project hangs together.
+# Files which are commented out exist but are not included in the `filesdump.txt`.)
+
+### --- Context & Meta ---
+# ⚠️ NON-NEGOTIABLE collaboration rules - READ FIRST
+CRITICAL_RULES.md
+
+# reading guide for bootstrapping a new session; either attached to the first message or passed as message body
+# FIRST_PROMPT.md
+
+LLM_INSTRUCTIONS.md
+manifest.lst
+tmp/project_tree.txt
+
+# standard project scaffolding
+README.md
+GOALS.md
+TODO.md
+HISTORY.md
+
+### --- docs ---
+
+# automatically generated
+docs/schema.sql
+
+# from `haddolib`, has additional documentation
+docs/haddolib_prototype.sql
+
+### --- Build & Python Configuration ---
+.gitignore
+.gitattributes
+.husky/pre-commit
+.lintstagedrc
+.prettierrc
+Makefile
+package.json
+scripts/requirements.txt
+vite.config.js
+
+### --- Project-specific Configuration ---
+
+### --- DevOps tools ---
+#tools/concat_files.py
+
+### --- Python scripts ---
+# TBC as part of inaugural session
+#scripts/export_books.py
+
+### --- Source in `src/` ---
+
+# TBA
+
+### --- Tests and fixtures data ---
+
+# TBA
+
+### --- Data ---
+#data/haddolib-copy.db
