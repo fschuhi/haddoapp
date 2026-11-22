@@ -15,6 +15,7 @@
 
 # Cover images, should they ever be linked or copied into the app for development
 /public/covers
+/public/photos
 
 # ============================================================================
 
