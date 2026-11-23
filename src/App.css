@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  background: #fafafa;
+  color: #222;
+}
+
+main {
+  padding: 12px;
+}
+
+h1 {
+  font-size: 1.2rem;
+  margin: 0 0 12px;
+}
+
+.message {
+  padding: 12px;
+}
+
+/* Covers side by side, like a shelf: as many columns as fit, each at least
+   110px wide. On the iPhone that gives three per row. */
+.shelf {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 16px 12px;
+}
+
+/* Every cover gets the same 2:3 frame, so the rows line up and the page does
+   not jump while lazy covers arrive. Covers of other shapes are shown whole,
+   with grey around them. */
+.cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  background: #eee;
+}
+
+/* Long titles are cut after two lines, so one book cannot stretch its row. */
+.title {
+  font-size: 0.75rem;
+  margin: 4px 0 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

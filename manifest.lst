@@ -39,21 +39,22 @@ scripts/requirements.txt
 vite.config.js
 
 ### --- Project-specific Configuration ---
+#TBA
 
 ### --- DevOps tools ---
 #tools/concat_files.py
 
 ### --- Python scripts ---
-# TBC as part of inaugural session
-#scripts/export_books.py
+scripts/export_books.py
 
 ### --- Source in `src/` ---
-
-# TBA
+index.html
+src/App.css
+src/App.jsx
+src/main.jsx
 
 ### --- Tests and fixtures data ---
-
-# TBA
+tests/test_export_books.py
 
 ### --- Data ---
 #data/haddolib-copy.db
