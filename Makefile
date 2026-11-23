@@ -20,10 +20,13 @@ PYTHON_SETUP_STAMP = $(VENV_DIR)/.setup_stamp
 #         Private data: data/ must be in .gitignore.
 # BOOKS:  the exported extract the app loads. Also private: in .gitignore.
 # SCHEMA: the table structure only, no books. Safe to commit.
+# NAS_APP: the app folder on the NAS, as the Mac sees it while the shared
+#         folder docker is open in the Finder. make deploy copies into it.
 # Override any of them on the command line, e.g.  make export DB=~/Desktop/haddolib-copy.db
 DB ?= data/haddolib-copy.db
 BOOKS ?= public/books.json
 SCHEMA ?= docs/schema.sql
+NAS_APP ?= /Volumes/docker/haddoapp
 
 # --- Tree (folders not shown in the project tree) ---
 TREE_IGNORE = node_modules|dist|build|.git|.idea|.vscode|.venv|__pycache__|.pytest_cache|tmp|data
@@ -33,6 +36,7 @@ TREE_IGNORE = node_modules|dist|build|.git|.idea|.vscode|.venv|__pycache__|.pyte
 .PHONY: dev build preview
 .PHONY: test test-js test-py test-watch
 .PHONY: export schema
+.PHONY: deploy
 .PHONY: patch commit-hash
 .PHONY: showtree gentree filesdump filesdump-detailed
 .PHONY: clean help
@@ -100,6 +104,24 @@ schema: ## Write the table structure of the database copy to docs/schema.sql
 	sqlite3 -readonly "$(DB)" .schema > $(SCHEMA)
 	@echo "Schema written to $(SCHEMA)"
 
+# --- Deploy ---
+# Copies the app (dist/) and books.json into the app folder on the NAS. rsync
+# copies only what changed, so running it again after a lost connection is safe.
+# Nothing on the NAS is deleted: after a code change, the old .js and .css files
+# stay in assets/, unused, because index.html only names the new ones.
+deploy: build ## Build, then copy the app and books.json to the NAS (NAS_APP=...)
+	@test -d "$(NAS_APP)" || { echo "NAS not connected: open docker in the Finder ($(NAS_APP) not found)"; exit 1; }
+	@test -f "$(BOOKS)" || { echo "No $(BOOKS) - run make export first"; exit 1; }
+	@echo "--- Copying dist/ and $(BOOKS) -> $(NAS_APP) ---"
+	rsync -rt dist/ "$(NAS_APP)/"
+	rsync -rt "$(BOOKS)" "$(NAS_APP)/books.json"
+	@echo "--- Checking that every file arrived unchanged ---"
+	@cd dist && for file in $$(find . -type f); do \
+		cmp -s "$$file" "$(NAS_APP)/$$file" || { echo "Not arrived: $$file - run make deploy again"; exit 1; }; \
+	done
+	@cmp -s "$(BOOKS)" "$(NAS_APP)/books.json" || { echo "Not arrived: books.json - run make deploy again"; exit 1; }
+	@echo "Deployed to $(NAS_APP)"
+
 # --- Collaboration ---
 patch: ## Apply all *.patch files in the repo root, then move them to tmp/applied-patches/
 	@ls *.patch >/dev/null 2>&1 || { echo "No *.patch files in the repo root"; exit 1; }
@@ -153,6 +175,7 @@ help: ## Show this help message
 	@echo "  make commit-hash       - Start of a session: commit hash to the clipboard"
 	@echo "  make export            - Export books.json from data/haddolib-copy.db"
 	@echo "  make dev               - Start the app on the Mac"
+	@echo "  make deploy            - Build, then copy the app and books.json to the NAS"
 	@echo "  make test              - Run all tests once"
 	@echo "  make patch             - Apply the patches from a session"
 	@echo "  make schema            - Refresh docs/schema.sql from the database copy"
