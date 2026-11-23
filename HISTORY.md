@@ -4,9 +4,13 @@
 
 - The resolved-work record: what was built and when (note date, or have the points in roughly reverse-chronological order).
 - This is the trophy case -- kept in the repo, **out of the per-session filesdump** (so it no longer rides along every session).
-- For *forward* work see `TODO.md`; for direction see `GOALS.md`; for the architecture as it stands see `README.md`.
-- See "Workflow for the Whole Session (CRITICAL)" in `LLM_INSTRUCTIONS.md` for the interplay between `TODO.md` and this file. 
+- For _forward_ work see `TODO.md`; for direction see `GOALS.md`; for the architecture as it stands see `README.md`.
+- See "Workflow for the Whole Session (CRITICAL)" in `LLM_INSTRUCTIONS.md` for the interplay between `TODO.md` and this file.
 
 ---
 
-TBA
+- **2026-11-23:** The README tells how haddoapp hangs together, in three diagrams: from the database copy to the page, one app in two places, and the files inside the app.
+- **2026-11-23:** Below each cover, the line I know from Excel: ISBN, rack / box (position), tags. And the first JavaScript test of the project.
+- **2026-11-23:** The whole library in the browser: covers side by side, in shelf order, rack 01 first. Flipping through all of it takes a few minutes, and it doesn't look so big after all.
+- **2026-11-22:** `make export`: the library leaves Excel. One file with every book, its location, tags and cover, read from a copy of the database that the script cannot change, and tested on an invented library, so no real book ever lands in this repo.
+- **2026-11-22:** haddoapp begins: a read-only browser for the home library, on the iPhone. The covers reach the app through two symlinks, without copying a single file.
