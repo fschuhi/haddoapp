@@ -51,6 +51,8 @@ scripts/export_books.py
 index.html
 src/App.css
 src/App.jsx
+src/format.js
+src/format.test.js
 src/main.jsx
 
 ### --- Tests and fixtures data ---

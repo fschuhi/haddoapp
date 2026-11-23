@@ -49,3 +49,20 @@ h1 {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ISBN and location, small; they wrap onto two lines in narrow columns. */
+.details {
+  font-size: 0.65rem;
+  margin: 2px 0 0;
+}
+
+.isbn {
+  color: #888;
+  margin-right: 0.5em;
+}
+
+.tags {
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin: 2px 0 0;
+}

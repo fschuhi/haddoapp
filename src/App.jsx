@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import { formatLocation } from './format.js'
 
 // The app is read-only: everything it shows comes from books.json, which
 // `make export` writes into public/, next to the covers/ and photos/ folders.
@@ -46,6 +47,12 @@ export default function App() {
               <div className="cover no-cover" />
             )}
             <p className="title">{book.title}</p>
+            {/* As in the Excel bookshelf sheet: ISBN (if known) and location, then tags */}
+            <p className="details">
+              {book.isbn13 && <span className="isbn">{book.isbn13}</span>}
+              <span className="location">{formatLocation(book)}</span>
+            </p>
+            {book.tags.length > 0 && <p className="tags">{book.tags.join(', ')}</p>}
           </li>
         ))}
       </ul>
