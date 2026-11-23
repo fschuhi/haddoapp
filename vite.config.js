@@ -11,4 +11,10 @@ export default defineConfig({
     open: true,
     host: true, // also reachable from the iPhone on the home Wi-Fi, via the Mac's address
   },
+  build: {
+    // make build leaves public/ out of dist/. Otherwise it would follow the covers
+    // and photos symlinks and copy every image; those are already on the NAS, and
+    // books.json goes there on its own after make export. make dev still serves public/.
+    copyPublicDir: false,
+  },
 })
