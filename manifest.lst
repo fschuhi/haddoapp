@@ -35,6 +35,7 @@ docs/haddolib_prototype.sql
 .prettierrc
 Makefile
 package.json
+#package-lock.json
 scripts/requirements.txt
 vite.config.js
 
@@ -47,7 +48,7 @@ vite.config.js
 ### --- Python scripts ---
 scripts/export_books.py
 
-### --- Source in `src/` ---
+### --- Source ---
 index.html
 src/App.css
 src/App.jsx
