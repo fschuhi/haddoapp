@@ -33,7 +33,7 @@ TREE_IGNORE = node_modules|dist|build|.git|.idea|.vscode|.venv|__pycache__|.pyte
 
 # --- Phony targets ---
 .PHONY: all setup setup-python
-.PHONY: dev build preview
+.PHONY: dev build
 .PHONY: test test-js test-py test-watch
 .PHONY: export schema
 .PHONY: deploy
@@ -71,9 +71,6 @@ dev: $(SETUP_STAMP) ## Start the development server (Vite)
 
 build: $(SETUP_STAMP) ## Build for production into dist/
 	npm run build
-
-preview: $(SETUP_STAMP) ## Preview the production build
-	npm run preview
 
 # --- Testing ---
 # JavaScript tests (Vitest) live next to the code as *.test.js(x);

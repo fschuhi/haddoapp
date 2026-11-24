@@ -201,7 +201,7 @@ Day to day:
 
 - `make dev`: the app on the Mac at `http://localhost:3000`
 - `make test`: all tests once
-- `make build`: build the app into `dist/`, without `public/`: no `books.json`, no covers. So `make preview` shows the app without books, only the error message.
+- `make build`: build the app into `dist/`, without `public/`: no `books.json`, no covers.
 - `make deploy`: build, copy to the NAS, check every file
 - `make patch`: apply the patches from a session
 - `make commit-hash`, `make filesdump`: start of a session with an LLM
