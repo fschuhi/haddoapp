@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="180" height="180">
+  <!-- White Kallax frame (full bleed, no transparency for iOS) -->
+  <rect width="180" height="180" fill="#ffffff"/>
+  <!-- Light gray interior: flat fill, so no moiré from gradients or fine texture -->
+  <rect x="12" y="12" width="156" height="156" fill="#c9cacd"/>
+
+  <!-- Vertical books, standing on the bottom of the box (y = 168) -->
+  <rect x="12"  y="54" width="18" height="114" rx="1" fill="#c8372d"/>
+  <rect x="31"  y="72" width="8"  height="96"  rx="1" fill="#2e7d4f"/>
+  <rect x="40"  y="48" width="12" height="120" rx="1" fill="#2a5a9e"/>
+  <rect x="53"  y="54" width="13" height="114" rx="1" fill="#e0b238"/>
+  <rect x="86"  y="66" width="10" height="102" rx="1" fill="#1f2a44"/>
+  <rect x="97"  y="78" width="9"  height="90"  rx="1" fill="#d9739a"/>
+  <rect x="107" y="66" width="12" height="102" rx="1" fill="#2f9c9c"/>
+
+  <!-- Two vertical books leaning on the horizontal stack -->
+  <rect x="146" y="64" width="10" height="56" rx="1" fill="#2e7d4f"/>
+  <rect x="158" y="78" width="8"  height="42" rx="1" fill="#2a5a9e"/>
+
+  <!-- Horizontal books, stacked at the bottom right -->
+  <rect x="126" y="152" width="40" height="16" rx="1.5" fill="#6b4a9b"/>
+  <rect x="120" y="136" width="44" height="16" rx="1.5" fill="#c8372d"/>
+  <rect x="128" y="120" width="36" height="16" rx="1.5" fill="#e0b238"/>
+
+  <!-- Slanted book, resting only on the blue book (left) and the right green book -->
+  <rect x="38" y="40.9" width="120" height="15" rx="1.5" fill="#d9739a" transform="rotate(8.7 98 48.4)"/>
+
+  <!-- Orange book, leaning so that only its upper right corner touches the black (navy) book; pivots on its bottom-left corner -->
+  <rect x="67" y="84" width="10" height="84" rx="1" fill="#e07a2c" transform="rotate(6 67 168)"/>
+</svg>
