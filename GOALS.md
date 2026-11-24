@@ -8,9 +8,9 @@
 
 ## 📍 Current Session Pointer
 
-**Where we are:** On the Mac, the app works end to end: `make export` writes `books.json` from the database copy, and `make dev` shows all books as a grid of covers in shelf order, with ISBN, location and tags below each cover. Python and JavaScript tests are all green. Nothing is on the NAS yet.
+**Where we are:** `make deploy` brings the app and `books.json` to the NAS. The nginx container `haddoapp` serves it in the home network on port 8080, with covers and photos straight from the NAS folders. On the iPhone, haddoapp opens from its own icon on the home screen. Python and JavaScript tests are all green.
 
-**What's next:** The NAS (roadmap step 2): build the app with `make build`, serve it with nginx in a Docker container, put `covers/` and `photos/` next to it, and open it on the iPhone.
+**What's next:** Filtering by tag, author and title (roadmap step 3).
 
 ---
 
@@ -25,7 +25,7 @@ A read-only browser for the home library on the phone: browse the shelves by cov
 ## Roadmap
 
 1. **Mac prototype** -- done, 22-23 November 2026: export, grid of covers, information line below each cover.
-2. **On the NAS:** `make build`, an nginx container serving the app, covers and photos on the NAS (the photos still need copying), an icon on the iPhone home screen ("Add to Home Screen").
+2. **On the NAS** -- done, 23-24 November 2026: `make deploy`, the nginx container `haddoapp` with covers and photos as read-only mounts, the icon on the iPhone home screen.
 3. **Filtering** by tag, author and title.
 4. **Zoom** into a cover.
 5. **Ready by the deadline:** a final export that includes the books added in the meantime, and a check on the phones.
