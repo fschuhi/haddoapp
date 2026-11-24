@@ -55,6 +55,8 @@ src/BookPage.jsx
 src/filter.js
 src/format.js
 src/main.jsx
+src/swipe.js
+src/swipe.test.js
 
 ### --- Python scripts ---
 scripts/export_books.py
