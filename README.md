@@ -66,11 +66,11 @@ flowchart TB
         pub --> c1["covers: symlink to the haddolib covers folder"]
         pub --> p1["photos: symlink to the haddolib photos folder"]
     end
-    subgraph nas ["NAS: home network (planned, not set up yet)"]
-        nginx["nginx in a Docker container"] --> dist["dist/ (from make build)"]
-        dist --> bj2["books.json"]
-        nginx --> c2["covers/"]
-        nginx --> p2["photos/"]
+    subgraph nas ["NAS: home network (make deploy)"]
+        nginx["nginx in the Docker container haddoapp, port 8080"] --> app["docker/haddoapp/"]
+        app --> bj2["index.html, assets/, books.json"]
+        nginx --> c2["covers: read-only mount of docker/haddolib/covers"]
+        nginx --> p2["photos: read-only mount of docker/haddolib/photos"]
     end
 ```
 
@@ -84,6 +84,7 @@ flowchart LR
     main --> app["src/App.jsx (loads books.json, draws the grid)"]
     app --> fmt["src/format.js (formatLocation)"]
     app --> css["src/App.css"]
+    html --> icon["src/assets/apple-touch-icon.png (home-screen icon)"]
 ```
 
 ### `books.json`
@@ -170,17 +171,36 @@ ln -s ~/Projects/haddolib/data/covers public/covers
 ln -s ~/Projects/haddolib/data/photos public/photos
 ```
 
+First-time setup on the NAS, in the shared folder `docker`:
+
+- `haddolib/covers/` and `haddolib/photos/`: copies of the image folders of `haddolib`, made from the Mac with `rsync -rt`, e.g. `rsync -rt ~/Projects/haddolib/data/covers/ /Volumes/docker/haddolib/covers/`. During big copies, no Finder window may be open on the destination folder.
+- `haddoapp/`, with two empty folders `covers` and `photos` in it. The container shows the image folders there, and it cannot create these two folders itself, because it may only read `haddoapp/`.
+- In Container Manager, a container from the image `nginx`:
+  - name `haddoapp`, automatic restart on
+  - port 8080 on the NAS -> port 80 in the container
+  - three mounts, all read-only ("Schreibgeschützt"):
+
+| NAS folder               | Path in the container          |
+| ------------------------ | ------------------------------ |
+| `docker/haddoapp`        | `/usr/share/nginx/html`        |
+| `docker/haddolib/covers` | `/usr/share/nginx/html/covers` |
+| `docker/haddolib/photos` | `/usr/share/nginx/html/photos` |
+
+A container's settings cannot be changed later. To change them, delete the container and create it again; nothing is lost, because the files live in the NAS folders.
+
 Updating the data:
 
 1. With Excel closed, copy the live `haddolib` database to `data/haddolib-copy.db`.
 2. `make export` writes `public/books.json`.
 3. If the database structure changed: `make schema` refreshes `docs/schema.sql`.
+4. With `docker` open in the Finder: `make deploy` builds the app and copies it with `books.json` to the NAS (`NAS_APP=...` for another folder). Then pull the page down in Safari to reload it.
 
 Day to day:
 
 - `make dev`: the app on the Mac at `http://localhost:3000`
 - `make test`: all tests once
-- `make build`, `make preview`: build into `dist/` and look at the result
+- `make build`: build the app into `dist/`, without `public/`: no `books.json`, no covers. So `make preview` shows the app without books, only the error message.
+- `make deploy`: build, copy to the NAS, check every file
 - `make patch`: apply the patches from a session
 - `make commit-hash`, `make filesdump`: start of a session with an LLM
 - `make help`: all targets
