@@ -14,15 +14,12 @@
 
 ## On the NAS (roadmap step 2)
 
-- Deploy the app to the NAS: `make build`, then an nginx container that serves `dist/`. Open question: `make build` copies everything in `public/` into `dist/` and follows the symlinks, so `dist/` would hold all covers (about 104 MB). Copy them along with the app, or let nginx serve the covers folder already on the NAS? _Needs investigation_
-- Copy `photos/` to the NAS; so far only `covers/` is there. During big copies, no Finder window may be open on the destination folder.
-- An icon on the iPhone home screen ("Add to Home Screen"): find out what the page needs for a proper icon and name. _Needs investigation_
-- After `make export`: which files to copy to the NAS, and how (probably only `books.json`).
+- A name instead of the address in Safari's address bar, e.g. `haddolib` or `haddolib:8080`. _Needs investigation_
 
 ## Browsing (roadmap steps 3 and 4)
 
 - Filter by tag, author and title.
-- Zoom into a cover.
+- Zoom into a cover. Pinch-zoom in Safari already works; is anything more needed? _Needs investigation_
 - Filter by room, or show the room; so far "Magazin" is the only one.
 - Sort with German rules, umlauts with their base letters. Tags are sorted by character code now, so "Ästhetik" comes after "Zoologie". Probably in the app with `Intl.Collator('de')`, together with sorting by title and author.
 
@@ -39,7 +36,7 @@
 
 ## Done this session
 
-- ~~Export `books.json` from the database copy~~ -- `scripts/export_books.py` with pytest tests on an invented library; the format is described in `README.md`.
-- ~~First page: all books as a grid of covers~~ -- `make dev`, covers through the symlinks in `public/`.
-- ~~Information line below each cover~~ -- ISBN, location, tags; `formatLocation` in `src/format.js` with the first Vitest test.
-- ~~Project documents~~ -- `README.md` with diagrams, `GOALS.md` with roadmap, this file, `HISTORY.md`.
+- ~~Deploy the app to the NAS~~ -- `make build` leaves `public/` out of `dist/`; `make deploy` copies `dist/` and `books.json` to `docker/haddoapp/` and checks every file. The nginx container `haddoapp` serves it on port 8080, covers and photos through read-only mounts.
+- ~~Copy `photos/` to the NAS~~ -- done, next to `covers/` in `docker/haddolib/`.
+- ~~An icon on the iPhone home screen~~ -- Apple touch icon in `src/assets/`, name "haddoapp" from the page title. After a change: reload the page in Safari, then add the icon again.
+- ~~After `make export`: which files to copy to the NAS~~ -- `make deploy` does it.
