@@ -16,12 +16,17 @@
 
 - A name instead of the address in Safari's address bar, e.g. `haddolib` or `haddolib:8080`. _Needs investigation_
 
-## Browsing (roadmap steps 3 and 4)
+## Browsing (roadmap step 3)
 
-- Filter by tag, author and title.
-- Zoom into a cover. Pinch-zoom in Safari already works; is anything more needed? _Needs investigation_
 - Filter by room, or show the room; so far "Magazin" is the only one.
 - Sort with German rules, umlauts with their base letters. Tags are sorted by character code now, so "Ästhetik" comes after "Zoologie". Probably in the app with `Intl.Collator('de')`, together with sorting by title and author.
+- Filter controls that leave the screen to the covers: research and brainstorm patterns (field hidden above the top that a pull-down reveals, a bar that hides on scroll-down and comes back on scroll-up, a floating button that opens the filters, a see-through "glass" bar). _Needs investigation_
+
+## Book details
+
+- Tap a cover to see everything `books.json` has on the book (roadmap step 4).
+- Synopses: one text file per book in a folder `synopses/`, next to `covers/` and `photos/`, easy to edit by hand; the app loads one when the book details open. No column in the database, no field in `books.json`. ISBNdb gives the synopsis only one book at a time, not in bulk (low priority; the 500+ books still to be catalogued come first). How the files are named (`book_id` or ISBN; not every book has an ISBN) and who writes them: _Needs investigation_
+- A free-text field per book, for both of us: anything worth knowing about the book. A new field; not `book_note`, which belongs to the Excel workflow. First from the Excel workbench to the app, later also from the app back to the database. Name and architecture: _Needs investigation_
 
 ## Display
 
@@ -36,7 +41,5 @@
 
 ## Done this session
 
-- ~~Deploy the app to the NAS~~ -- `make build` leaves `public/` out of `dist/`; `make deploy` copies `dist/` and `books.json` to `docker/haddoapp/` and checks every file. The nginx container `haddoapp` serves it on port 8080, covers and photos through read-only mounts.
-- ~~Copy `photos/` to the NAS~~ -- done, next to `covers/` in `docker/haddolib/`.
-- ~~An icon on the iPhone home screen~~ -- Apple touch icon in `src/assets/`, name "haddoapp" from the page title. After a change: reload the page in Safari, then add the icon again.
-- ~~After `make export`: which files to copy to the NAS~~ -- `make deploy` does it.
+- ~~Filter by tag, author and title~~ -- one filter field above the grid; every typed word must appear in the title, the authors or a tag (`src/filter.js`).
+- ~~Zoom into a cover~~ -- pinch-zoom in Safari is enough.

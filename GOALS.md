@@ -8,9 +8,9 @@
 
 ## 📍 Current Session Pointer
 
-**Where we are:** `make deploy` brings the app and `books.json` to the NAS. The nginx container `haddoapp` serves it in the home network on port 8080, with covers and photos straight from the NAS folders. On the iPhone, haddoapp opens from its own icon on the home screen. Python and JavaScript tests are all green.
+**Where we are:** `make deploy` brings the app and `books.json` to the NAS. The nginx container `haddoapp` serves it in the home network on port 8080, with covers and photos straight from the NAS folders. On the iPhone, haddoapp opens from its own icon on the home screen. A filter field above the grid narrows the shelves down by words from title, authors and tags. Python and JavaScript tests are all green.
 
-**What's next:** Filtering by tag, author and title (roadmap step 3).
+**What's next:** Book details: tap a cover to see everything `books.json` has on the book (roadmap step 4).
 
 ---
 
@@ -26,7 +26,7 @@ A read-only browser for the home library on the phone: browse the shelves by cov
 
 1. **Mac prototype** -- done, 22-23 November 2026: export, grid of covers, information line below each cover.
 2. **On the NAS** -- done, 23-24 November 2026: `make deploy`, the nginx container `haddoapp` with covers and photos as read-only mounts, the icon on the iPhone home screen.
-3. **Filtering** by tag, author and title.
-4. **Zoom** into a cover.
+3. **Filtering** -- done, 24 November 2026: one filter field for title, authors and tags.
+4. **Book details:** tap a cover to see everything `books.json` has on the book.
 5. **Ready by the deadline:** a final export that includes the books added in the meantime, and a check on the phones.
 6. **After the deadline:** more rooms first, then tagging from the phone through a small server. Better cover images, to be worked out between `haddolib` and haddoapp.

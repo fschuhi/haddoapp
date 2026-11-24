@@ -9,6 +9,7 @@
 
 ---
 
+- **2026-11-24:** The filter field: a few words, and the shelves narrow down to the books that have all of them in title, authors or tags. "physik" finds Astrophysik too.
 - **2026-11-24:** The Kallax box on the home screen: haddoapp opens from its own icon, at its final address.
 - **2026-11-23:** The library on the iPhone, served by the NAS for the first time. An nginx container shows the app; covers and photos come straight from the NAS folders, read-only.
 - **2026-11-23:** `make deploy`: one command builds the app, copies it with `books.json` to the NAS, and checks every file byte by byte. The covers stay where they are.

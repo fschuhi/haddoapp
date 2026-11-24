@@ -36,6 +36,7 @@ haddoapp shows the books catalogued in `haddolib` as a grid of covers in shelf o
   - the ISBN in grey, if the database has one
   - the location as `rack / box (position)`, e.g. `01 / 03 (7)`; a missing part shows as `-`
   - the tags in bold, if any
+- Above the grid, a filter field: every typed word must appear in the title, the authors or a tag, also inside a longer word ("physik" finds "Astrophysik"); upper and lower case are ignored. The heading shows how many books match. The field scrolls away with the heading.
 - Covers are loaded lazily: the browser only fetches those near the visible part of the page.
 - The position is a hint, not a fact: books get put back into their box in a different order.
 
@@ -83,6 +84,7 @@ flowchart LR
     html["index.html (empty div#root)"] --> main["src/main.jsx (starts React)"]
     main --> app["src/App.jsx (loads books.json, draws the grid)"]
     app --> fmt["src/format.js (formatLocation)"]
+    app --> flt["src/filter.js (matchesFilter)"]
     app --> css["src/App.css"]
     html --> icon["src/assets/apple-touch-icon.png (home-screen icon)"]
 ```
