@@ -52,19 +52,21 @@ index.html
 src/App.css
 src/App.jsx
 src/BookPage.jsx
+src/bookPageRows.js
 src/filter.js
 src/format.js
 src/main.jsx
 src/swipe.js
-src/swipe.test.js
 
 ### --- Python scripts ---
 scripts/export_books.py
 
 ### --- Tests and fixtures data ---
 ## src
+src/bookPageRows.test.js
 src/filter.test.js
 src/format.test.js
+src/swipe.test.js
 
 ## scripts
 tests/test_export_books.py

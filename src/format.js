@@ -5,7 +5,7 @@ const MISSING = '-'
 
 // "rack 01" -> "01", as in the Excel bookshelf sheet.
 // A label without digits ("cupboard A") is shown unchanged.
-function shortLabel(label) {
+export function shortLabel(label) {
   if (label == null || label === '') return MISSING
   const digits = label.match(/[0-9]+/)
   return digits ? digits[0] : label
