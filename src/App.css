@@ -14,6 +14,17 @@ h1 {
   margin: 0 0 12px;
 }
 
+/* The filter field, full width. 16px, because Safari on the iPhone zooms into
+   any text field with a smaller font when it is tapped. border-box keeps the
+   padding inside the 100%, so the field does not stick out on the right. */
+.filter-field {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  padding: 6px 8px;
+  margin: 0 0 12px;
+}
+
 .message {
   padding: 12px;
 }
