@@ -51,6 +51,7 @@ index.html
 #src/assets/apple-touch-icon.png
 src/App.css
 src/App.jsx
+src/BookPage.jsx
 src/filter.js
 src/format.js
 src/main.jsx
