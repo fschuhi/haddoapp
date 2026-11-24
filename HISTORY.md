@@ -9,6 +9,8 @@
 
 ---
 
+- **2026-11-24:** The book page: tap a book, and haddoapp shows everything it knows about it. A swipe to the right brings back the shelf, exactly where it was.
+- **2026-11-24:** No more sideways sway: the grid scrolls straight up and down, and a swipe on the book page no longer pushes it aside.
 - **2026-11-24:** The filter field: a few words, and the shelves narrow down to the books that have all of them in title, authors or tags. "physik" finds Astrophysik too.
 - **2026-11-24:** The Kallax box on the home screen: haddoapp opens from its own icon, at its final address.
 - **2026-11-23:** The library on the iPhone, served by the NAS for the first time. An nginx container shows the app; covers and photos come straight from the NAS folders, read-only.

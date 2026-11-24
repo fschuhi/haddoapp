@@ -38,6 +38,8 @@ haddoapp shows the books catalogued in `haddolib` as a grid of covers in shelf o
   - the tags in bold, if any
 - Above the grid, a filter field: every typed word must appear in the title, the authors or a tag, also inside a longer word ("physik" finds "Astrophysik"); upper and lower case are ignored. The heading shows how many books match. The field scrolls away with the heading.
 - Covers are loaded lazily: the browser only fetches those near the visible part of the page.
+- Tap a book to open its book page, over the grid: the cover at the top, fitted into 60% of the screen height, then every field `books.json` has on the book, each with a German caption (`src/bookPageRows.js`). Empty fields are left out, so a book with little information shows few rows. Rack and box show as numbers, as in the grid. Swipe right or tap "Schließen" to close it; the grid is back where it was.
+- The page does not sway sideways: the grid scrolls straight up and down.
 - The position is a hint, not a fact: books get put back into their box in a different order.
 
 ---
@@ -85,6 +87,10 @@ flowchart LR
     main --> app["src/App.jsx (loads books.json, draws the grid)"]
     app --> fmt["src/format.js (formatLocation)"]
     app --> flt["src/filter.js (matchesFilter)"]
+    app --> page["src/BookPage.jsx (the book page)"]
+    page --> rows["src/bookPageRows.js (bookPageRows)"]
+    rows --> fmt
+    page --> swipe["src/swipe.js (isSwipeRight)"]
     app --> css["src/App.css"]
     html --> icon["src/assets/apple-touch-icon.png (home-screen icon)"]
 ```

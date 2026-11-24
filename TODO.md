@@ -24,7 +24,7 @@
 
 ## Book details
 
-- Tap a cover to see everything `books.json` has on the book (roadmap step 4).
+- More fields in `books.json`: publisher, year, pages and whatever else `book_current` has that is worth showing. Which fields, in which order on the book page, and whether some rows should combine fields, e.g. "Ort" with Regal, Fach and Position in one line, to make room for the new ones. _Needs investigation_
 - Synopses: one text file per book in a folder `synopses/`, next to `covers/` and `photos/`, easy to edit by hand; the app loads one when the book details open. No column in the database, no field in `books.json`. ISBNdb gives the synopsis only one book at a time, not in bulk (low priority; the 500+ books still to be catalogued come first). How the files are named (`book_id` or ISBN; not every book has an ISBN) and who writes them: _Needs investigation_
 - A free-text field per book, for both of us: anything worth knowing about the book. A new field; not `book_note`, which belongs to the Excel workflow. First from the Excel workbench to the app, later also from the app back to the database. Name and architecture: _Needs investigation_
 
@@ -41,5 +41,4 @@
 
 ## Done this session
 
-- ~~Filter by tag, author and title~~ -- one filter field above the grid; every typed word must appear in the title, the authors or a tag (`src/filter.js`).
-- ~~Zoom into a cover~~ -- pinch-zoom in Safari is enough.
+- ~~Tap a cover to see everything `books.json` has on the book~~ -- the book page (`src/BookPage.jsx`): tap a book, see the cover and every non-empty field with a German caption (`src/bookPageRows.js`); swipe right or "Schließen" to close.
