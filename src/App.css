@@ -104,3 +104,39 @@ h1 {
   padding: 6px 12px;
   margin: 0 0 12px;
 }
+
+/* The cover at the top of the book page, in its own shape (no 2:3 frame as in the grid).
+   Every cover gets the same box: the full width, and 60% of the screen height (60vh),
+   so the first rows are visible without scrolling and always start at the same height.
+   object-fit: contain fits the whole cover into the box, without distorting it. */
+.book-page-cover {
+  display: block;
+  width: 100%;
+  height: 60vh;
+  object-fit: contain;
+  margin: 0 0 12px;
+}
+
+/* A book without a cover: the box stays, empty and grey, as in the grid. */
+.book-page-no-cover {
+  background: #eee;
+}
+
+/* Caption and value side by side: the captions in a column as wide as the longest one,
+   the values in the rest. Long values (titles, authors) wrap within their column. */
+.book-page-rows {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+}
+
+.book-page-rows dt {
+  color: #888;
+}
+
+/* Browsers indent a dd by default; here it sits in its own column. */
+.book-page-rows dd {
+  margin: 0;
+}
