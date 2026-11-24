@@ -45,20 +45,25 @@ vite.config.js
 ### --- DevOps tools ---
 #tools/concat_files.py
 
-### --- Python scripts ---
-scripts/export_books.py
-
 ### --- Source ---
 index.html
 #src/assets/apple-touch-icon.svg
 #src/assets/apple-touch-icon.png
 src/App.css
 src/App.jsx
+src/filter.js
 src/format.js
-src/format.test.js
 src/main.jsx
 
+### --- Python scripts ---
+scripts/export_books.py
+
 ### --- Tests and fixtures data ---
+## src
+src/filter.test.js
+src/format.test.js
+
+## scripts
 tests/test_export_books.py
 
 ### --- Data ---
