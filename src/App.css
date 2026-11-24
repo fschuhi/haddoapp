@@ -77,3 +77,22 @@ h1 {
   font-weight: bold;
   margin: 2px 0 0;
 }
+
+/* The book page covers the whole screen, above the grid, whatever the scroll
+   position (fixed, inset 0). The grid stays underneath, so closing the book
+   page returns to the same place. It scrolls on its own when its content is long. */
+.book-page {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 12px;
+  background: #fafafa;
+}
+
+/* 16px like the filter field, so the button is easy to hit with a finger. */
+.book-page-close {
+  font-size: 16px;
+  padding: 6px 12px;
+  margin: 0 0 12px;
+}

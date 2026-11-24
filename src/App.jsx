@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { formatLocation } from './format.js'
 import { matchesFilter } from './filter.js'
+import BookPage from './BookPage.jsx'
 
 // The app is read-only: everything it shows comes from books.json, which
 // `make export` writes into public/, next to the covers/ and photos/ folders.
@@ -15,6 +16,8 @@ export default function App() {
   const [error, setError] = useState(null)
   // What the user types into the filter field; empty = show every book
   const [filterText, setFilterText] = useState('')
+  // The book whose book page is open, after a tap on it in the grid; null = no book page open
+  const [selectedBook, setSelectedBook] = useState(null)
 
   // Load books.json once, when the page opens. Loading it at runtime (instead
   // of building it into the app) means an update is just a new books.json.
@@ -55,7 +58,7 @@ export default function App() {
       />
       <ul className="shelf">
         {matchingBooks.map((book) => (
-          <li key={book.book_id} className="book">
+          <li key={book.book_id} className="book" onClick={() => setSelectedBook(book)}>
             {book.cover_file ? (
               // encodeURI turns the spaces in photo file names into %20.
               // loading="lazy": the browser only fetches covers near the screen.
@@ -78,6 +81,8 @@ export default function App() {
           </li>
         ))}
       </ul>
+      {/* Drawn over the grid; the grid stays underneath, so closing returns to the same place */}
+      {selectedBook && <BookPage book={selectedBook} onClose={() => setSelectedBook(null)} />}
     </main>
   )
 }
