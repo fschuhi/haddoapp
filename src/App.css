@@ -1,3 +1,11 @@
+/* The page itself must not sway sideways. Otherwise scrolling the grid wobbles
+   left and right, and a swipe on the book page pushes the grid to the right,
+   where it springs back just after the book page closes. Sideways only (-x):
+   pulling the page down to reload still works. */
+html {
+  overscroll-behavior-x: none;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
