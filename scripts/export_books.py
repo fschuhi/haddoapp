@@ -7,11 +7,14 @@ and writes one JSON list with one object per book, in shelf order. The
 database is opened read-only, so this script cannot change the copy.
 """
 
+from __future__ import annotations
+
 import json
 import sqlite3
 import sys
 from contextlib import closing
 from pathlib import Path
+from typing import Any
 
 # Folders the app expects next to its index.html. On the Mac they are
 # symlinks in public/; on the NAS they will be folders next to the app.
@@ -35,7 +38,7 @@ TAGS_QUERY = """
 """
 
 
-def cover_file_from_ref(cover_ref):
+def cover_file_from_ref(cover_ref: str | None) -> str | None:
     """Turn a cover_ref from the database into a path relative to the app.
 
     - A URL (from ISBNdb): the last part of the URL, in covers/.
@@ -54,22 +57,22 @@ def cover_file_from_ref(cover_ref):
     return f"{PHOTOS_FOLDER}/{cover_ref}"
 
 
-def open_read_only(db_path):
+def open_read_only(db_path: str | Path) -> sqlite3.Connection:
     """Open the database so that any attempt to write fails."""
     # mode=ro needs the path as a file: URI; as_uri() also encodes spaces.
     uri = Path(db_path).resolve().as_uri() + "?mode=ro"
     return sqlite3.connect(uri, uri=True)
 
 
-def read_books(connection):
+def read_books(connection: sqlite3.Connection) -> list[dict[str, Any]]:
     """Return all books as a list of dicts, in shelf order."""
     # Tags live in their own tables (a book has zero to many), so they are
     # read separately and attached per book.
-    tags_by_book = {}
+    tags_by_book: dict[int, list[str]] = {}
     for book_id, name in connection.execute(TAGS_QUERY):
         tags_by_book.setdefault(book_id, []).append(name)
 
-    books = []
+    books: list[dict[str, Any]] = []
     for row in connection.execute(BOOKS_QUERY):
         (
             book_id,
@@ -100,7 +103,7 @@ def read_books(connection):
     return books
 
 
-def main(argv):
+def main(argv: list[str]) -> int:
     if len(argv) != 3:
         print("Usage: export_books.py DB BOOKS", file=sys.stderr)
         return 2
