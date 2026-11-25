@@ -140,7 +140,7 @@ An invented example:
 ## Relation to sibling projects
 
 - **`haddolib`** (private): catalogues the books in a SQLite database, with an Excel frontend (PyXLL). It owns the database and the cover images. haddoapp reads a copy of the database, never the live one, and never writes.
-- The database structure is in `docs/schema.sql` (generated from the copy with `make schema`; it wins if the two schema files differ) and in `docs/haddolib_prototype.sql` (from `haddolib`, with comments). The read layer is the view `book_current`, one row per book; tags are not in it, because a book has zero to many.
+- The database structure is in `docs/schema.sql` (generated from the copy with `make schema`; it wins if the two schema files differ) and in `docs/haddolib_default_schema.sql` (from `haddolib`, with comments). The read layer is the view `book_current`, one row per book; tags are not in it, because a book has zero to many.
 
 ---
 
