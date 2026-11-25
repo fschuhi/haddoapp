@@ -25,7 +25,7 @@ HISTORY.md
 docs/schema.sql
 
 # from `haddolib`, has additional documentation
-docs/haddolib_prototype.sql
+docs/haddolib_default_schema.sql
 
 ### --- Build & Python Configuration ---
 .gitignore
